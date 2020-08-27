@@ -1,26 +1,46 @@
-import React from 'react';
-import logo from './logo.svg';
+import React, { Component } from 'react';
+
+import Button from './components/button/Button';
+import Counter from './components/counter/Counter';
 import './App.css';
 
-function App() {
-  return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
-    </div>
-  );
+
+class App extends Component {
+
+  state = {
+    counter: 0,
+    title: 'Wild Counter'
+  }
+
+  increase = () => {
+    this.setState({
+      counter: this.state.counter +1
+    })
+  }
+
+  decrease = () => {
+    this.setState({
+      counter: this.state.counter -1
+    })
+  }
+
+  sawi = newTitle => {
+    this.setState({
+      title: newTitle
+    })
+  }
+
+  render() {
+    return (
+      <div>
+        <h1>{this.state.title}: {this.state.counter}</h1>
+        <Button action={this.increase} text='+' />
+        <Button sawi={this.sawi} action={this.decrease} text='-' />
+        <Counter counterValue={this.state.counter} pizza='Yes please'/>
+      </div>
+    )
+  }
 }
+
 
 export default App;
